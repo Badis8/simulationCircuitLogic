@@ -9,17 +9,20 @@ import io.netty.util.Signal;
 
 //these repretent the middle of the tree gates they can get linked (the link always accures behind tho)
  
-public abstract class StandardLinkableGate extends CoreGate  {
-  
+public abstract class StandardNumeberedPins extends CoreGate  {
     
-   
- 
+    private final int pinsLimit;
 
-    
-    public void link(CoreGate gateToLink){
-        if  (super.outputables.size()<2){
+    public StandardNumeberedPins(int limit){
+
+        this.pinsLimit=limit;
+
+    }
+    public void link(CoreGate gateToLink,int pinsLimit){
+        if  (super.outputables.size()<this.pinsLimit){
 
             super.outputables.add(gateToLink);
+             //else exception
         }
     }
    

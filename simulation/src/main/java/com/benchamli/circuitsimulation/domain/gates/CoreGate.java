@@ -19,6 +19,6 @@ public abstract class CoreGate implements Outputable{
        
     }
 
- 
+    
    
 }

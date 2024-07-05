@@ -1,14 +1,24 @@
 package com.benchamli.circuitsimulation.domain.gates.standardGates;
 
 import com.benchamli.circuitsimulation.domain.coreelements.Signal;
+import com.benchamli.circuitsimulation.domain.gates.gateinterfaces.Outputable;
 
-public class OrGate extends StandardLinkableGate {
+public class OrGate extends StandardNumeberedPins {
 
+
+    public OrGate(int limit){
+        super(limit);
+    }
     @Override
     public Signal output() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'output'");
+        Signal result=super.outputables.get(0).output();
+        for (int i = 1; i < super.outputables.size(); i++) {  
+            Outputable input = super.outputables.get(i);
+            result = Signal.values()[result.ordinal() | input.output().ordinal()]; //we lost the befenits of readability from declaring an enum , i'am open to delete the enum
+        }
+        return result;
     }
+
 
  
     
